@@ -1,10 +1,11 @@
+from operator import itemgetter
+
 students = []
 N = int(input())
-for _ in range(N):
-    name, a, b, c = input().split()
-    students.append((int(a), int(b), int(c), name))
+for i in range(N):
+    students.append(input().split())
 
-students.sort(key=lambda x: (-x[0], x[1], -x[2], x[3]))
+students = sorted(students, key=lambda x: (-int(x[1]), int(x[2]), -int(x[3]), x[0]))
 
-for a, b, c, name in students:
-    print(name)
+for name in students:
+    print(name[0])
