@@ -1,11 +1,9 @@
-from operator import itemgetter
+import sys
 
-students = []
-N = int(input())
-for i in range(N):
-    students.append(input().split())
+N = int(sys.stdin.readline().rstrip())
+students = [sys.stdin.readline().rstrip().split() for _ in range(N)]
 
-students = sorted(students, key=lambda x: (-int(x[1]), int(x[2]), -int(x[3]), x[0]))
+students.sort(key=lambda x: (-int(x[1]), int(x[2]), -int(x[3]), x[0]))
 
 for name in students:
     print(name[0])
