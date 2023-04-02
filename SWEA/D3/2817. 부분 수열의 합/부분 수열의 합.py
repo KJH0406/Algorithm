@@ -1,6 +1,7 @@
 def dfs(n, sm, cnt):
     global ans
-
+    if sm > K:
+        return 
     if sm == K:
         ans += 1
         return
