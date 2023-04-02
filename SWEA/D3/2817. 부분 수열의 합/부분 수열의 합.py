@@ -1,19 +1,23 @@
-def backtrack(n, s, cnt):  # cnt => 원소 포함한 개수
+def dfs(n, sm, cnt):
     global ans
-    if n == N:
-        if s == K and cnt > 0:
-            ans += 1
+
+    if sm == K:
+        ans += 1
         return
 
-    backtrack(n+1, s + A_list[n], cnt + 1)
-    backtrack(n+1, s, cnt)
+    for j in range(cnt, N):
+        if v[j] == 0:
+            v[j] = 1
+            dfs(n+1, sm + arr[j], j)
+            v[j] = 0
 
 
 T = int(input())
 for tc in range(1, T+1):
     N, K = map(int, input().split())
-    A_list = list(map(int, input().split()))
+    arr = list(map(int, input().split()))
+    v = [0] * N
     ans = 0
-    backtrack(0, 0, 0)
+    dfs(0, 0, 0)
     print(f'#{tc} {ans}')
 
