@@ -1,26 +1,12 @@
-from collections import deque
-
 def solution(s):
-    answer = True
-    s_list = deque([])
-    for s_item in s:
-        s_list.append(s_item)
-    
     flag = 0
-    
-    while s_list:
-        if flag < 0:
-            answer = False
-            break
-        
-        bracket = s_list.popleft()
-        
+
+    for bracket in s:
         if bracket == '(':
             flag += 1
         else:
+            if flag == 0:
+                return False  # 여는 괄호 없이 닫는 괄호가 나오면 바로 False 반환
             flag -= 1
-    
-    if flag != 0:
-        answer = False
-        
-    return answer
+
+    return flag == 0  # 모든 검사 후 괄호의 수가 맞지 않으면 False 반환
